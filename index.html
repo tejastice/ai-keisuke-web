@@ -702,6 +702,126 @@
             }
         }
 
+        /* オープンソースセクション */
+        .opensource {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .opensource-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .opensource-info {
+            text-align: center;
+        }
+
+        .opensource-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .opensource-info > p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .opensource-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .opensource-feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .opensource-feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .opensource-feature h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #ff6b6b;
+        }
+
+        .opensource-feature p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .opensource-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .github-button, .support-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #24292e, #404448);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .support-button {
+            background: linear-gradient(45deg, #7289DA, #5865F2);
+        }
+
+        .github-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .support-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(114, 137, 218, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .contribution-note {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contribution-note p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
         /* フッター */
         .footer {
             background: rgba(255, 255, 255, 0.1);
@@ -782,6 +902,7 @@
                 <li><a href="#character">キャラクター</a></li>
                 <li><a href="#invite">招待</a></li>
                 <li><a href="#pricing">料金プラン</a></li>
+                <li><a href="changelog.html">更新履歴</a></li>
                 <li><a href="privacy.html">プライバシーポリシー</a></li>
             </ul>
         </nav>
@@ -803,7 +924,7 @@
 
     <!-- 機能セクション -->
     <section class="features container" id="features">
-        <h2>🌟 革新的な機能</h2>
+        <h2>🎵 音声入力対応！今の時代にぴったりな便利機能</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <span class="feature-icon">👍</span>
@@ -975,6 +1096,53 @@
             <img id="modalImage" class="modal-image" src="" alt="">
         </div>
     </div>
+
+    <!-- オープンソースセクション -->
+    <section id="opensource" class="opensource">
+        <div class="container">
+            <h2>🌟 オープンソースプロジェクト</h2>
+            <div class="opensource-content">
+                <div class="opensource-info">
+                    <h3>AI けいすけ Bot はオープンソースです</h3>
+                    <p>このプロジェクトは完全にオープンソースとして公開しています。興味のある方、自分でも実行してみたい方は、ぜひGitHubリポジトリをご覧ください。</p>
+                    
+                    <div class="opensource-features">
+                        <div class="opensource-feature">
+                            <span class="feature-icon">💻</span>
+                            <h4>完全なソースコード</h4>
+                            <p>Botの全機能のソースコードと詳細ドキュメントを公開</p>
+                        </div>
+                        <div class="opensource-feature">
+                            <span class="feature-icon">🔧</span>
+                            <h4>カスタマイズ可能</h4>
+                            <p>自由に改変して独自のBotを作成</p>
+                        </div>
+                        <div class="opensource-feature">
+                            <span class="feature-icon">🤝</span>
+                            <h4>MITライセンス</h4>
+                            <p>商用利用も含めて自由に使用可能</p>
+                        </div>
+                    </div>
+
+                    <div class="opensource-buttons">
+                        <a href="https://github.com/tejastice/ai-keisuke" class="github-button" target="_blank">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHubで見る
+                        </a>
+                        <a href="https://discord.gg/7b5g3RbjYv" class="support-button" target="_blank">
+                            💬 サポートサーバーに参加
+                        </a>
+                    </div>
+
+                    <div class="contribution-note">
+                        <p>⭐ スターやフォークは大歓迎です！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- フッター -->
     <footer class="footer">
