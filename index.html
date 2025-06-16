@@ -237,6 +237,24 @@
             line-height: 1.6;
         }
 
+        .feature-preview {
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .feature-screenshot {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-screenshot:hover {
+            transform: scale(1.05);
+        }
+
         /* キャラクター紹介 */
         .character {
             padding: 100px 0;
@@ -727,6 +745,9 @@
                 <span class="feature-icon">❤️</span>
                 <h3>褒めメッセージ</h3>
                 <p>ハートリアクションで熱烈な応援メッセージと可愛い画像を生成。モチベーション向上をサポートします。</p>
+                <div class="feature-preview">
+                    <img src="images/20250616_homehome.jpg" alt="褒めメッセージ機能のデモ" class="feature-screenshot">
+                </div>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">✏️</span>
