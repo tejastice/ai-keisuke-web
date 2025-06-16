@@ -368,17 +368,41 @@
             border-radius: 15px;
             padding: 30px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
         }
 
         .step-emoji {
             font-size: 2rem;
-            display: block;
-            margin-bottom: 15px;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .step-content {
+            flex: 1;
         }
 
         .usage-step p {
-            margin: 0;
+            margin: 0 0 15px 0;
             line-height: 1.6;
+        }
+
+        .step-screenshot {
+            margin-top: 15px;
+        }
+
+        .usage-screenshot {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .usage-screenshot:hover {
+            transform: scale(1.02);
         }
 
         .usage-step code {
@@ -743,6 +767,9 @@
                 <span class="feature-icon">❓</span>
                 <h3>AI解説機能</h3>
                 <p>疑問符リアクションで投稿内容について詳しく解説。専門用語や複雑な内容もわかりやすく説明します。</p>
+                <div class="feature-preview">
+                    <img src="images/20250616_kaisetsu.jpg" alt="AI解説機能のデモ" class="feature-screenshot">
+                </div>
             </div>
             <div class="feature-card">
                 <span class="feature-icon">❤️</span>
@@ -806,24 +833,33 @@
 
     <!-- Bot招待セクション -->
     <section class="invite container" id="invite">
-        <h2>🚀 今すぐ始めよう</h2>
+        <h2>🆓 まずは無料で始めよう</h2>
         <div class="invite-content">
             <div class="invite-main">
                 <h3>1クリックでBotを招待</h3>
-                <p>下のボタンをクリックして、AIけいすけBotをあなたのDiscordサーバーに招待しましょう。</p>
-                <a href="https://discord.com/oauth2/authorize?client_id=1382889690138673212" class="invite-button" target="_blank">🤖 Discordに招待する</a>
+                <p>下のボタンをクリックして、AIけいすけBotをあなたのDiscordサーバーに招待しましょう。<strong>完全無料</strong>でスタートできます！</p>
+                <a href="https://discord.com/oauth2/authorize?client_id=1382889690138673212" class="invite-button" target="_blank">🤖 無料でDiscordに招待する</a>
                 <div class="usage-steps">
                     <div class="usage-step">
                         <span class="step-emoji">1️⃣</span>
-                        <p>Botを招待したら、<code>/activate</code> コマンドでチャンネルを有効化</p>
+                        <div class="step-content">
+                            <p>Botを招待したら、<code>/activate</code> コマンドでチャンネルを有効化</p>
+                            <div class="step-screenshot">
+                                <img src="images/20250616_activate.jpg" alt="Botアクティベーションのデモ" class="usage-screenshot">
+                            </div>
+                        </div>
                     </div>
                     <div class="usage-step">
                         <span class="step-emoji">2️⃣</span>
-                        <p>メッセージにリアクション（👍🎤❓❤️✏️）するだけで機能が使える！</p>
+                        <div class="step-content">
+                            <p>メッセージにリアクション（👍🎤❓❤️✏️）するだけで機能が使える！</p>
+                        </div>
                     </div>
                     <div class="usage-step">
                         <span class="step-emoji">3️⃣</span>
-                        <p>無料プランでは1日5回まで利用可能。制限なしで使いたい方は有料プランへ！</p>
+                        <div class="step-content">
+                            <p><strong>無料プランでも1日5回</strong>まで全機能が利用可能。もっと使いたい方は有料プランもご用意！</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -840,13 +876,13 @@
                     <div class="price">¥0<span>/月</span></div>
                 </div>
                 <ul class="plan-features">
-                    <li>✅ 全機能利用可能</li>
-                    <li>✅ 1日5回まで利用</li>
+                    <li>✅ <strong>全機能利用可能</strong></li>
+                    <li>✅ 1日5回まで利用（結構使える！）</li>
                     <li>✅ GPT-4.1-mini使用</li>
                     <li>✅ 基本サポート</li>
                 </ul>
                 <div class="plan-button">
-                    <a href="#invite" class="button-secondary">今すぐ始める</a>
+                    <a href="#invite" class="button-secondary">無料で今すぐ始める</a>
                 </div>
             </div>
             <div class="pricing-card premium">
