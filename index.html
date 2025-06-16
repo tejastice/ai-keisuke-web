@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI けいすけ Bot - 次世代Discord AI アシスタント</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        /* メインセクション */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/banner.jpg') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+            animation: heroImageFloat 3s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes heroImageFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            background: linear-gradient(45deg, #ffffff, #a8edea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(238, 90, 36, 0.4);
+        }
+
+        /* 浮遊アニメーション */
+        .floating {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating:nth-child(2) { top: 60%; right: 10%; animation-delay: 2s; }
+        .floating:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 機能セクション */
+        .features {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* キャラクター紹介 */
+        .character {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .character-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .character-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0 0 50px rgba(255, 255, 255, 0.2); }
+            to { box-shadow: 0 0 80px rgba(255, 255, 255, 0.4); }
+        }
+
+        .character-info {
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .character-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .character-info p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        /* Bot招待セクション */
+        .invite {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .invite h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .invite-main h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .invite-main {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .invite-main p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .invite-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-bottom: 50px;
+        }
+
+        .invite-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .usage-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .usage-step {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .step-emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .usage-step p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .usage-step code {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* 料金プラン */
+        .pricing {
+            padding: 100px 0;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-card.premium {
+            border: 2px solid #ff6b6b;
+            transform: scale(1.05);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .plan-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .price span {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.9;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .button-primary, .button-secondary {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.3);
+        }
+
+        .button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(238, 90, 36, 0.4);
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-note p {
+            margin: 0;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* デモンストレーション */
+        .demo {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .demo h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .demo-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .demo-image {
+            flex: 0 0 450px;
+            max-width: 500px;
+        }
+
+        .screenshot {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .demo-info {
+            flex: 1;
+            min-width: 350px;
+            max-width: 550px;
+        }
+
+        .demo-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .demo-steps {
+            margin-bottom: 30px;
+        }
+
+        .demo-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .demo-step .step-number {
+            display: inline-flex;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .demo-step p {
+            margin: 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .demo-description {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #ff6b6b;
+            margin: 0;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .demo-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .demo-image, .demo-info {
+                min-width: auto;
+                width: 100%;
+            }
+        }
+
+        /* フッター */
+        .footer {
+            background: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            padding: 40px 0;
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer p {
+            opacity: 0.7;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .character-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .character-info {
+                text-align: center;
+            }
+        }
+
+        /* 背景パーティクル */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: particle-float 8s linear infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- パーティクル背景 -->
+    <div class="particles" id="particles"></div>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">🤖 AI けいすけ</a>
+            <ul class="nav-links">
+                <li><a href="#features">機能</a></li>
+                <li><a href="#character">キャラクター</a></li>
+                <li><a href="#invite">招待</a></li>
+                <li><a href="#pricing">料金プラン</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- メインセクション -->
+    <section class="hero">
+        <div class="floating">✨</div>
+        <div class="floating">🚀</div>
+        <div class="floating">💫</div>
+        
+        <div class="hero-content">
+            <img src="images/image.jpg" alt="AI けいすけ" class="hero-image">
+            <h1>AI けいすけ Bot</h1>
+            <p>リアクション一つで使える、次世代のDiscord AIアシスタント。招待するだけですぐに使えます！</p>
+            <a href="https://discord.com/oauth2/authorize?client_id=1382889690138673212" class="cta-button" target="_blank">Botを招待する</a>
+        </div>
+    </section>
+
+    <!-- 機能セクション -->
+    <section class="features container" id="features">
+        <h2>🌟 革新的な機能</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">👍</span>
+                <h3>X投稿生成</h3>
+                <p>サムズアップリアクションで、メッセージを瞬時にX（旧Twitter）投稿用に最適化。AIが最適な文章に変換します。</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎤</span>
+                <h3>音声文字起こし</h3>
+                <p>マイクリアクションで音声ファイルを高精度でテキスト化。OpenAI Whisperによる最先端の音声認識技術を採用。</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">❓</span>
+                <h3>AI解説機能</h3>
+                <p>疑問符リアクションで投稿内容について詳しく解説。専門用語や複雑な内容もわかりやすく説明します。</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">❤️</span>
+                <h3>褒めメッセージ</h3>
+                <p>ハートリアクションで熱烈な応援メッセージと可愛い画像を生成。モチベーション向上をサポートします。</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">✏️</span>
+                <h3>メモ作成</h3>
+                <p>鉛筆リアクションでObsidian用のMarkdownメモを自動生成。情報整理とナレッジマネジメントを効率化。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- キャラクター紹介 -->
+    <section class="character container" id="character">
+        <div class="character-content">
+            <img src="images/keisuke.jpg" alt="AI けいすけ" class="character-image">
+            <div class="character-info">
+                <h2>✨ AI けいすけ Bot</h2>
+                <p>AI時代の最新技術を、Discord上で誰でも簡単に使えるようにした革新的なBotです。</p>
+                <p>フリーランス、インフルエンサー、コンテンツクリエイターなど、情報発信を仕事にしている方にぴったり。リアクション一つで、投稿の作成、音声の文字起こし、アイデアの整理が瞬時に完了します。</p>
+                <p>最新のGPT-4.1技術により、高品質なAI機能をDiscord上で手軽に利用。あなたの創作活動と情報発信を強力にサポートします。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- デモンストレーション -->
+    <section class="demo container">
+        <h2>💡 使い方デモ</h2>
+        <div class="demo-content">
+            <div class="demo-image">
+                <img src="images/20250616_screenshot.jpg" alt="AI けいすけ Bot 動作デモ" class="screenshot">
+            </div>
+            <div class="demo-info">
+                <h3>リアクション一つでX投稿を生成</h3>
+                <div class="demo-steps">
+                    <div class="demo-step">
+                        <span class="step-number">1</span>
+                        <p>メッセージに👍リアクションを付ける</p>
+                    </div>
+                    <div class="demo-step">
+                        <span class="step-number">2</span>
+                        <p>AIが自動でX投稿用の文章を生成</p>
+                    </div>
+                    <div class="demo-step">
+                        <span class="step-number">3</span>
+                        <p>クリック一つですぐにX（旧Twitter）に投稿可能</p>
+                    </div>
+                </div>
+                <p class="demo-description">
+                    この例では「AI時代はとにかくメモを残して情報発信することが大切だ」という短いメッセージから、
+                    魅力的で構造化されたX投稿用テキストが自動生成されています。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bot招待セクション -->
+    <section class="invite container" id="invite">
+        <h2>🚀 今すぐ始めよう</h2>
+        <div class="invite-content">
+            <div class="invite-main">
+                <h3>1クリックでBotを招待</h3>
+                <p>下のボタンをクリックして、AIけいすけBotをあなたのDiscordサーバーに招待しましょう。</p>
+                <a href="https://discord.com/oauth2/authorize?client_id=1382889690138673212" class="invite-button" target="_blank">🤖 Discordに招待する</a>
+                <div class="usage-steps">
+                    <div class="usage-step">
+                        <span class="step-emoji">1️⃣</span>
+                        <p>Botを招待したら、<code>/activate</code> コマンドでチャンネルを有効化</p>
+                    </div>
+                    <div class="usage-step">
+                        <span class="step-emoji">2️⃣</span>
+                        <p>メッセージにリアクション（👍🎤❓❤️✏️）するだけで機能が使える！</p>
+                    </div>
+                    <div class="usage-step">
+                        <span class="step-emoji">3️⃣</span>
+                        <p>無料プランでは1日5回まで利用可能。制限なしで使いたい方は有料プランへ！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金プラン -->
+    <section class="pricing container" id="pricing">
+        <h2>💎 料金プラン</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-header">
+                    <h3>無料プラン</h3>
+                    <div class="price">¥0<span>/月</span></div>
+                </div>
+                <ul class="plan-features">
+                    <li>✅ 全機能利用可能</li>
+                    <li>✅ 1日5回まで利用</li>
+                    <li>✅ GPT-4.1-mini使用</li>
+                    <li>✅ 基本サポート</li>
+                </ul>
+                <div class="plan-button">
+                    <a href="#invite" class="button-secondary">今すぐ始める</a>
+                </div>
+            </div>
+            <div class="pricing-card premium">
+                <div class="plan-badge">おすすめ</div>
+                <div class="plan-header">
+                    <h3>プレミアムプラン</h3>
+                    <div class="price">$5<span>/月</span></div>
+                </div>
+                <ul class="plan-features">
+                    <li>✅ 全機能無制限利用</li>
+                    <li>✅ GPT-4.1使用（高品質）</li>
+                    <li>✅ サポートサーバーでの優先サポート</li>
+                    <li>✅ 今後の新機能優先提供</li>
+                </ul>
+                <div class="plan-button">
+                    <a href="https://www.patreon.com/kei31" class="button-primary" target="_blank">Patreonで支援する</a>
+                </div>
+            </div>
+        </div>
+        <div class="pricing-note">
+            <p>※ Patreonで支援いただいた方は、<a href="https://discord.gg/7b5g3RbjYv" target="_blank" style="color: #ff6b6b; text-decoration: none;">こちらのサポートサーバー</a>に参加してください。サーバー内でプレミアムロールが付与され、自動的にプレミアム機能が有効になります。</p>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 AI けいすけ Bot. 次世代のDiscord AIアシスタント</p>
+        </div>
+    </footer>
+
+    <script>
+        // パーティクル生成
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ヘッダーのスクロール効果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.2)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.backdropFilter = 'blur(15px)';
+            }
+        });
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
+    </script>
+</body>
+</html>
