@@ -598,84 +598,6 @@
             font-size: 0.9rem;
         }
 
-        /* プライバシーポリシー */
-        .privacy {
-            padding: 100px 0;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-        }
-
-        .privacy h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-
-        .privacy-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .privacy-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .privacy-section h3 {
-            color: #ffffff;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #ff6b6b;
-            padding-bottom: 8px;
-        }
-
-        .privacy-section p {
-            margin-bottom: 15px;
-            line-height: 1.7;
-            opacity: 0.9;
-        }
-
-        .privacy-section ul {
-            margin: 15px 0;
-            padding-left: 20px;
-        }
-
-        .privacy-section li {
-            margin-bottom: 8px;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-
-        .privacy-section a {
-            color: #ff6b6b;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .privacy-section a:hover {
-            color: #ff8e8e;
-            text-decoration: underline;
-        }
-
-        .privacy-footer {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .privacy-footer p {
-            margin: 0;
-            font-weight: bold;
-            color: #ffffff;
-        }
 
         /* デモンストレーション */
         .demo {
@@ -860,7 +782,7 @@
                 <li><a href="#character">キャラクター</a></li>
                 <li><a href="#invite">招待</a></li>
                 <li><a href="#pricing">料金プラン</a></li>
-                <li><a href="#privacy">プライバシー</a></li>
+                <li><a href="privacy.html">プライバシー</a></li>
             </ul>
         </nav>
     </header>
@@ -1043,62 +965,6 @@
         </div>
         <div class="pricing-note">
             <p>※ Patreonで支援いただいた方は、<a href="https://discord.gg/7b5g3RbjYv" target="_blank" style="color: #ff6b6b; text-decoration: none;">こちらのサポートサーバー</a>に参加してください。サーバー内でプレミアムロールが付与され、自動的にプレミアム機能が有効になります。</p>
-        </div>
-    </section>
-
-    <!-- プライバシーポリシー -->
-    <section class="privacy container" id="privacy">
-        <h2>🔒 プライバシーポリシー</h2>
-        <div class="privacy-content">
-            <div class="privacy-section">
-                <h3>1. 取得する情報</h3>
-                <p>AI けいすけ Botは、以下の情報を機能実行時にのみ一時的に取得・利用します：</p>
-                <ul>
-                    <li>ユーザーが送信したテキストメッセージ（リアクション対象のメッセージ）</li>
-                    <li>音声ファイル（🎤マイクリアクション機能利用時のみ）</li>
-                    <li>ユーザーの利用回数情報（無料プラン制限管理のため）</li>
-                    <li>カスタムプロンプト設定（ユーザーが設定した場合のみ）</li>
-                </ul>
-            </div>
-            
-            <div class="privacy-section">
-                <h3>2. 情報の利用目的</h3>
-                <p>取得した情報は、以下の目的にのみ利用されます：</p>
-                <ul>
-                    <li>AI機能の実行（X投稿生成、音声文字起こし、AI解説、褒めメッセージ、メモ作成）</li>
-                    <li>利用回数制限の管理</li>
-                    <li>ユーザー個別設定の保存</li>
-                </ul>
-                <p><strong>上記以外の目的には一切利用いたしません。</strong></p>
-            </div>
-            
-            <div class="privacy-section">
-                <h3>3. 情報の保存・管理</h3>
-                <ul>
-                    <li><strong>メッセージ・音声データ</strong>: 処理完了後即座に削除され、保存されません</li>
-                    <li><strong>利用回数情報</strong>: 日次制限管理のため一時保存（日付変更時にリセット）</li>
-                    <li><strong>カスタム設定</strong>: ユーザーが削除するまでローカルに保存</li>
-                    <li><strong>第三者提供</strong>: いかなる情報も第三者に提供いたしません</li>
-                </ul>
-            </div>
-            
-            <div class="privacy-section">
-                <h3>4. 外部サービス連携</h3>
-                <p>本Botは以下の外部APIを利用しており、これらのサービスのプライバシーポリシーも適用されます：</p>
-                <ul>
-                    <li><strong>OpenAI API</strong>: テキスト生成・音声文字起こしに利用</li>
-                    <li><strong>is.gd API</strong>: URL短縮サービスに利用</li>
-                </ul>
-            </div>
-            
-            <div class="privacy-section">
-                <h3>5. お問い合わせ</h3>
-                <p>プライバシーに関するご質問やご要望がある場合は、<a href="https://discord.gg/7b5g3RbjYv" target="_blank" style="color: #ff6b6b;">サポートサーバー</a>までご連絡ください。</p>
-            </div>
-            
-            <div class="privacy-footer">
-                <p><strong>最終更新日：2025年6月16日</strong></p>
-            </div>
         </div>
     </section>
 
