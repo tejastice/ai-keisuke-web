@@ -1218,8 +1218,8 @@
                     <div class="stat-label">月間アクティブユーザー</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="totalReactions">-</div>
-                    <div class="stat-label">累計利用回数</div>
+                    <div class="stat-number" id="dailyReactions">-</div>
+                    <div class="stat-label">本日の利用回数</div>
                 </div>
             </div>
             <div class="stats-updated">
@@ -1521,7 +1521,7 @@
                 animateNumber('serverCount', data.server_count || 0);
                 animateNumber('dailyUsers', data.daily_active_users || 0);
                 animateNumber('monthlyUsers', data.monthly_active_users || 0);
-                animateNumber('totalReactions', data.total_reactions || 0);
+                animateNumber('dailyReactions', data.daily_reactions || 0);
                 
                 // 最終更新日時を表示
                 const lastUpdated = document.getElementById('lastUpdated');
@@ -1534,7 +1534,7 @@
                 animateNumber('serverCount', 15);
                 animateNumber('dailyUsers', 8);
                 animateNumber('monthlyUsers', 25);
-                animateNumber('totalReactions', 150);
+                animateNumber('dailyReactions', 12);
                 
                 const lastUpdated = document.getElementById('lastUpdated');
                 lastUpdated.textContent = '最終更新: データ読み込み中...';
