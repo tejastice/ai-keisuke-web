@@ -453,73 +453,6 @@
             transform: scale(1.05);
         }
 
-        /* 統計情報セクション */
-        .statistics {
-            padding: 100px 0;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .statistics h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-
-        .statistics-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            opacity: 0.8;
-            margin-bottom: 60px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.8;
-        }
-
-        .stats-updated {
-            text-align: center;
-            margin-top: 30px;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
 
         /* モーダル */
         .modal {
@@ -1290,35 +1223,6 @@
         </div>
     </section>
 
-    <!-- 統計情報セクション -->
-    <section class="statistics" id="statistics">
-        <div class="container">
-            <h2>📊 AI けいすけの実績</h2>
-            <p class="statistics-subtitle">多くのDiscordサーバーで愛用されています</p>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number" id="serverCount">-</div>
-                    <div class="stat-label">導入サーバー数</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="dailyUsers">-</div>
-                    <div class="stat-label">本日のアクティブユーザー</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="monthlyUsers">-</div>
-                    <div class="stat-label">月間アクティブユーザー</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="dailyReactions">-</div>
-                    <div class="stat-label">本日の利用回数</div>
-                </div>
-            </div>
-            <div class="stats-updated">
-                <small id="lastUpdated">最終更新: 読み込み中...</small>
-            </div>
-        </div>
-    </section>
-
     <!-- キャラクター紹介 -->
     <section class="character container" id="character">
         <div class="character-content">
@@ -1607,47 +1511,21 @@
             try {
                 console.log('統計データを読み込み中...');
                 
-                // 一時的に直接データを設定（JSON読み込み問題の回避）
+                // サーバー数のデータのみ設定
                 const data = {
                     "server_count": 329,
-                    "daily_active_users": 8,
-                    "monthly_active_users": 25,
-                    "daily_reactions": 12,
                     "last_updated": "2025-06-20"
                 };
                 console.log('読み込んだデータ:', data);
                 
-                // アニメーション付きで数値を表示
-                animateNumber('serverCount', data.server_count || 0);
-                animateNumber('dailyUsers', data.daily_active_users || 0);
-                animateNumber('monthlyUsers', data.monthly_active_users || 0);
-                animateNumber('dailyReactions', data.daily_reactions || 0);
-                
-                // ヒーローセクションのサーバー数も更新
+                // ヒーローセクションのサーバー数のみ表示
                 animateNumber('heroServerCount', data.server_count || 0);
                 console.log('ヒーローセクションに設定:', data.server_count);
-                
-                // 最終更新日時を表示
-                const lastUpdated = document.getElementById('lastUpdated');
-                if (data.last_updated && lastUpdated) {
-                    lastUpdated.textContent = `最終更新: ${data.last_updated}`;
-                }
             } catch (error) {
                 console.error('統計データの読み込みエラー:', error);
-                // エラー時はダミーデータを表示
-                animateNumber('serverCount', 329);
-                animateNumber('dailyUsers', 8);
-                animateNumber('monthlyUsers', 25);
-                animateNumber('dailyReactions', 12);
-                
-                // ヒーローセクションのサーバー数も更新
+                // エラー時はヒーローセクションのサーバー数のみ表示
                 animateNumber('heroServerCount', 329);
                 console.log('エラーのためダミーデータを表示: 329');
-                
-                const lastUpdated = document.getElementById('lastUpdated');
-                if (lastUpdated) {
-                    lastUpdated.textContent = '最終更新: データ読み込みエラー';
-                }
             }
         }
 
