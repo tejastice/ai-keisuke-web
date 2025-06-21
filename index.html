@@ -1511,11 +1511,12 @@
             try {
                 console.log('統計データを読み込み中...');
                 
-                // サーバー数のデータのみ設定
-                const data = {
-                    "server_count": 329,
-                    "last_updated": "2025-06-20"
-                };
+                // stats.jsonから動的に読み込み
+                const response = await fetch('./stats.json?v=' + Date.now());
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
                 console.log('読み込んだデータ:', data);
                 
                 // ヒーローセクションのサーバー数のみ表示
@@ -1524,8 +1525,8 @@
             } catch (error) {
                 console.error('統計データの読み込みエラー:', error);
                 // エラー時はヒーローセクションのサーバー数のみ表示
-                animateNumber('heroServerCount', 329);
-                console.log('エラーのためダミーデータを表示: 329');
+                animateNumber('heroServerCount', 390);
+                console.log('エラーのためダミーデータを表示: 390');
             }
         }
 
