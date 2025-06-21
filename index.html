@@ -1590,8 +1590,16 @@
         // 統計データ読み込み機能
         async function loadStatistics() {
             try {
-                const response = await fetch('/stats.json');
+                console.log('統計データを読み込み中...');
+                const response = await fetch('/stats.json?v=' + Date.now()); // キャッシュ回避
+                console.log('レスポンス:', response.status, response.statusText);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const data = await response.json();
+                console.log('読み込んだデータ:', data);
                 
                 // アニメーション付きで数値を表示
                 animateNumber('serverCount', data.server_count || 0);
@@ -1601,25 +1609,29 @@
                 
                 // ヒーローセクションのサーバー数も更新
                 animateNumber('heroServerCount', data.server_count || 0);
+                console.log('ヒーローセクションに設定:', data.server_count);
                 
                 // 最終更新日時を表示
                 const lastUpdated = document.getElementById('lastUpdated');
-                if (data.last_updated) {
+                if (data.last_updated && lastUpdated) {
                     lastUpdated.textContent = `最終更新: ${data.last_updated}`;
                 }
             } catch (error) {
-                console.warn('統計データの読み込みに失敗しました:', error);
+                console.error('統計データの読み込みエラー:', error);
                 // エラー時はダミーデータを表示
-                animateNumber('serverCount', 15);
+                animateNumber('serverCount', 329);
                 animateNumber('dailyUsers', 8);
                 animateNumber('monthlyUsers', 25);
                 animateNumber('dailyReactions', 12);
                 
                 // ヒーローセクションのサーバー数も更新
-                animateNumber('heroServerCount', 15);
+                animateNumber('heroServerCount', 329);
+                console.log('エラーのためダミーデータを表示: 329');
                 
                 const lastUpdated = document.getElementById('lastUpdated');
-                lastUpdated.textContent = '最終更新: データ読み込み中...';
+                if (lastUpdated) {
+                    lastUpdated.textContent = '最終更新: データ読み込みエラー';
+                }
             }
         }
 
