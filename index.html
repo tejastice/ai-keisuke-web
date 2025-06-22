@@ -349,6 +349,70 @@
             box-shadow: 0 15px 40px rgba(238, 90, 36, 0.4);
         }
 
+        /* ヒーローアクション */
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .share-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .share-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-right: 5px;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .share-btn.twitter {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .share-btn.twitter:hover {
+            background: rgba(0, 0, 0, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .share-btn.facebook {
+            background: rgba(24, 119, 242, 0.8);
+        }
+
+        .share-btn.facebook:hover {
+            background: rgba(24, 119, 242, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(24, 119, 242, 0.4);
+        }
+
+        .share-btn.line {
+            background: rgba(0, 195, 0, 0.8);
+        }
+
+        .share-btn.line:hover {
+            background: rgba(0, 195, 0, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 195, 0, 0.4);
+        }
+
         /* 浮遊アニメーション */
         .floating {
             position: absolute;
@@ -1068,6 +1132,23 @@
             .character-info {
                 text-align: center;
             }
+
+            .hero-actions {
+                gap: 15px;
+            }
+
+            .share-buttons {
+                gap: 10px;
+            }
+
+            .share-btn {
+                width: 35px;
+                height: 35px;
+            }
+
+            .share-label {
+                font-size: 0.8rem;
+            }
         }
 
         /* 背景パーティクル */
@@ -1162,7 +1243,27 @@
                 </div>
             </div>
             <p>リアクション一つで使える、次世代のDiscord AIアシスタント。招待するだけですぐに使えます！</p>
-            <a href="https://discord.com/oauth2/authorize?client_id=1382889690138673212" class="cta-button" target="_blank">Botを招待する</a>
+            <div class="hero-actions">
+                <a href="https://discord.com/oauth2/authorize?client_id=1382889690138673212" class="cta-button" target="_blank">Botを招待する</a>
+                <div class="share-buttons">
+                    <span class="share-label">シェア:</span>
+                    <a href="https://twitter.com/intent/tweet?url=https://ai-keisuke.kei31.com/&text=AI%20けいすけ%20Bot%20-%20次世代Discord%20AI%20アシスタント%20🤖%20リアクション一つでAI機能が使える！" target="_blank" class="share-btn twitter" title="Xでシェア">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://ai-keisuke.kei31.com/" target="_blank" class="share-btn facebook" title="Facebookでシェア">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://social-plugins.line.me/lineit/share?url=https://ai-keisuke.kei31.com/" target="_blank" class="share-btn line" title="LINEでシェア">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
