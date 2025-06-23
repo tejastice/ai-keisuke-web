@@ -1658,9 +1658,16 @@
         async function loadStatistics() {
             try {
                 console.log('統計データを読み込み中...');
+                console.log('現在のURL:', window.location.href);
                 
                 // stats.jsonから動的に読み込み
-                const response = await fetch('./stats.json?v=' + Date.now());
+                const url = './stats.json?v=' + Date.now();
+                console.log('Fetch URL:', url);
+                
+                const response = await fetch(url);
+                console.log('Response status:', response.status);
+                console.log('Response ok:', response.ok);
+                
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -1671,10 +1678,13 @@
                 animateNumber('heroServerCount', data.server_count || 0);
                 console.log('ヒーローセクションに設定:', data.server_count);
             } catch (error) {
-                console.error('統計データの読み込みエラー:', error);
-                // エラー時はヒーローセクションのサーバー数のみ表示
-                animateNumber('heroServerCount', 390);
-                console.log('エラーのためダミーデータを表示: 390');
+                console.error('統計データの読み込みエラーの詳細:', error.message);
+                console.error('エラータイプ:', error.constructor.name);
+                console.error('エラー全体:', error);
+                
+                // エラー時は100を表示してエラーを明確にする
+                animateNumber('heroServerCount', 100);
+                console.log('エラーのためダミーデータを表示: 100');
             }
         }
 
