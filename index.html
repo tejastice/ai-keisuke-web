@@ -202,13 +202,14 @@
 
         /* メインセクション */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             position: relative;
             text-align: center;
             overflow: hidden;
+            padding-top: 120px;
         }
 
         .hero::before {
@@ -616,7 +617,7 @@
 
         /* Bot招待セクション */
         .invite {
-            padding: 100px 0;
+            padding: 150px 0 100px 0;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             text-align: center;
@@ -726,7 +727,7 @@
 
         /* 料金プラン */
         .pricing {
-            padding: 100px 0;
+            padding: 150px 0 100px 0;
         }
 
         .pricing h2 {
@@ -1096,6 +1097,10 @@
 
         /* レスポンシブ */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 30px;
+            }
+
             .mobile-menu-btn {
                 display: flex;
             }
@@ -1104,11 +1109,21 @@
                 display: none;
             }
 
+            .hero {
+                padding-top: 100px;
+            }
+
             .hero-image {
                 width: 150px;
                 height: 150px;
-                margin-top: 60px;
                 margin-bottom: 15px;
+            }
+
+            .hero p {
+                max-width: 90%;
+                font-size: 1.2rem;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .hero-stat-badge {
@@ -1155,6 +1170,31 @@
 
             .share-label {
                 font-size: 0.8rem;
+            }
+
+            .invite {
+                padding: 120px 0 80px 0;
+            }
+
+            .pricing {
+                padding: 120px 0 80px 0;
+            }
+        }
+
+        /* より小さな画面用 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 25px;
+            }
+
+            .hero-content {
+                gap: 15px;
+            }
+
+            .hero p {
+                max-width: 85%;
+                font-size: 1.1rem;
+                line-height: 1.5;
             }
         }
 
