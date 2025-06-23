@@ -665,6 +665,29 @@
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
         }
 
+        .usage-guide-link {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .guide-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
+        }
+
+        .guide-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(240, 147, 251, 0.4);
+        }
+
         .usage-steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1368,6 +1391,13 @@
                     <img src="images/20250617_article.jpg" alt="記事作成機能のデモ" class="feature-screenshot" onclick="openModal(this)">
                 </div>
             </div>
+        </div>
+        
+        <!-- 詳しい使い方リンク -->
+        <div class="usage-guide-link">
+            <a href="how-to-use.html" class="guide-button">
+                📖 詳しい使い方を見る
+            </a>
         </div>
     </section>
 

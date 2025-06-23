@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使い方ガイド - AI けいすけ Bot</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="AI けいすけ Bot の詳しい使い方ガイド。リアクション機能の詳細説明、設定方法、効果的な活用法を解説します。">
+    <meta name="keywords" content="Discord Bot, AI, 使い方, チュートリアル, リアクション, OpenAI, GPT-4">
+    <meta name="author" content="AI けいすけ Bot">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-keisuke.kei31.com/how-to-use.html">
+    <meta property="og:title" content="使い方ガイド - AI けいすけ Bot">
+    <meta property="og:description" content="AI けいすけ Bot の詳しい使い方ガイド。リアクション機能の詳細説明、設定方法、効果的な活用法を解説">
+    <meta property="og:image" content="https://ai-keisuke.kei31.com/images/ai-keisuke.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="AI けいすけ Bot">
+    <meta property="og:locale" content="ja_JP">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ai-keisuke.kei31.com/how-to-use.html">
+    <meta property="twitter:title" content="使い方ガイド - AI けいすけ Bot">
+    <meta property="twitter:description" content="AI けいすけ Bot の詳しい使い方ガイド。リアクション機能の詳細説明、設定方法、効果的な活用法を解説">
+    <meta property="twitter:image" content="https://ai-keisuke.kei31.com/images/ai-keisuke.jpg">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Japanese">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ai-keisuke.kei31.com/how-to-use.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/favicons/android-chrome-512x512.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #f093fb;
+            text-shadow: 0 0 10px rgba(240, 147, 251, 0.5);
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .guide-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .guide-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #f093fb;
+            text-shadow: 0 0 15px rgba(240, 147, 251, 0.5);
+        }
+
+        .guide-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .external-link {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-top: 20px;
+        }
+
+        .external-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .guide-section {
+                padding: 25px;
+            }
+            
+            .external-link {
+                font-size: 1rem;
+                padding: 12px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">🤖 AI けいすけ</a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">機能</a></li>
+                <li><a href="index.html#character">キャラクター</a></li>
+                <li><a href="index.html#invite">始め方</a></li>
+                <li><a href="index.html#pricing">料金プラン</a></li>
+                <li><a href="changelog.html">更新履歴</a></li>
+                <li><a href="terms.html">利用規約</a></li>
+                <li><a href="privacy.html">プライバシーポリシー</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content container">
+        <h1 class="page-title">📖 使い方ガイド</h1>
+        <p class="page-subtitle">AI けいすけ Bot の詳しい使い方を分かりやすく解説します</p>
+
+        <a href="index.html" class="back-button">
+            ← ホームに戻る
+        </a>
+
+        <div class="guide-section">
+            <h2>📚 機能別詳細ガイド</h2>
+            <h3 style="color: #ffd700; margin-bottom: 15px; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);">👍 X投稿生成機能</h3>
+            <p>最も人気の「X投稿生成機能」について、実際の使用例とコツを詳しく解説した記事をご用意しています：</p>
+            
+            <a href="https://note.com/konho/n/nb0e22d72397d" target="_blank" rel="noopener noreferrer" class="external-link">
+                📖 X投稿自動生成の使い方ガイド（note.com）
+            </a>
+            
+            <p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <strong>🎤 音声文字起こし、❓ AI解説、❤️ 褒めメッセージ、✏️ メモ作成、📝 記事作成</strong><br>
+                その他の機能についても、順次詳細ガイドを作成予定です。基本的な使い方は下記をご参照ください。
+            </p>
+        </div>
+
+    </main>
+</body>
+</html>
