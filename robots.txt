@@ -1,0 +1,41 @@
+User-agent: *
+Allow: /
+
+# サイトマップ
+Sitemap: https://ai-keisuke.kei31.com/sitemap.xml
+
+# 主要なAI検索エンジン向け最適化
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# 画像とリソースの許可
+Allow: /images/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.json
+
+# クロール頻度の最適化
+Crawl-delay: 1
+
+# 主要ページの優先案内
+# Discord Bot AI アシスタント - AI けいすけ Bot
+# 主な機能: X投稿生成、音声文字起こし、AI解説、褒めメッセージ、記事作成
+# URL: https://ai-keisuke.kei31.com/
